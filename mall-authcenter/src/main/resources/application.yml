@@ -1,0 +1,10 @@
+server:
+  port: 9999
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
+spring:
+  datasource:
+    dynamic:
+      primary: user

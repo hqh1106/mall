@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: mall-authcenter
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: 127.0.0.1:8848
+        shared-configs[0]:
+          data-id: mall-db-common.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+        shared-configs[1]:
+          data-id: mall-nacos.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+        namespace: dev
+logging:
+  level:
+    com:
+      alibaba:
+        cloud:
+          nacos:
+            client: info
