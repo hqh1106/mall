@@ -1,4 +1,4 @@
-package com.hqh.mall.componment;
+package com.hqh.mall.component;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;

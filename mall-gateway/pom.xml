@@ -6,14 +6,14 @@
         <artifactId>mall</artifactId>
         <version>0.0.1</version>
     </parent>
-    <groupId>org.hqh</groupId>
+    <groupId>com.hqh</groupId>
     <artifactId>mall-gateway</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.hqh</groupId>
+            <groupId>com.hqh</groupId>
             <artifactId>mall-common</artifactId>
             <exclusions>
                 <exclusion>

@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <groupId>org.hqh</groupId>
+    <groupId>com.hqh</groupId>
     <artifactId>mall-common</artifactId>
     <packaging>jar</packaging>
 

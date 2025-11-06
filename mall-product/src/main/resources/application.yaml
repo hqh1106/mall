@@ -1,0 +1,11 @@
+server:
+  port: 8866
+spring:
+  application:
+    name: mall-product
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations:
+    - classpath*:com/**/mapper/*.xml
+    - classpath:dao/*.xml
