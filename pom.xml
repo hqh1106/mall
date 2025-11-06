@@ -42,6 +42,7 @@
         <module>mall-product</module>
         <module>mall-redis-common</module>
         <module>mall-core</module>
+        <module>mall-member</module>
     </modules>
     <dependencyManagement>
         <dependencies>

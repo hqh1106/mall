@@ -25,7 +25,7 @@ public class RedisExtConfig {
     String redisNodes;
     @Value("${spring.redis.password:nopwd}")
     String redisPass;
-    @Value("${spring.redis.host:nopwd}")
+    @Value("${spring.redis.host:127.0.0.1}")
     String ip;
     @Value("${spring.redis.port:nopwd}")
     String port;

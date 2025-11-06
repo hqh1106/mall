@@ -1,0 +1,10 @@
+server:
+  port: 8877
+mybatis:
+  mapper-locations:
+    - classpath:com/**/dao/*.xml
+    - classpath*:com/**/mapper/*.xml
+spring:
+  # 选择redis为session存储
+  session:
+    store-type: redis
