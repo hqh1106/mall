@@ -1,6 +1,8 @@
 package com.hqh.mall.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.hqh.mall.common.api.CommonResult;
+import com.hqh.mall.component.rocketmq.StockChangeEvent;
 import com.hqh.mall.domain.CartPromotionItem;
 import com.hqh.mall.domain.StockChanges;
 import com.hqh.mall.mapper.PmsSkuStockMapper;
@@ -8,9 +10,12 @@ import com.hqh.mall.mapper.SmsFlashPromotionProductRelationMapper;
 import com.hqh.mall.model.PmsSkuStockExample;
 import com.hqh.mall.model.SmsFlashPromotionProductRelation;
 import com.hqh.mall.service.StockManageService;
+import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
@@ -45,6 +50,8 @@ public class StockManageServiceImpl implements StockManageService {
     }
 
     @Override
+    @DS("goods")
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public CommonResult lockStock(List<CartPromotionItem> cartPromotionItemList) {
         try {
             for (CartPromotionItem cartPromotionItem : cartPromotionItemList) {
@@ -54,6 +61,7 @@ public class StockManageServiceImpl implements StockManageService {
                         .andStockGreaterThanOrEqualTo(cartPromotionItem.getQuantity());
                 skuStockMapper.lockStockByExample(cartPromotionItem.getQuantity(),pmsSkuStockExample);
             }
+            String xid = RootContext.getXID();
             //简化操作，认定锁定库存一定成功，实际应该检查是否锁定成功，后期补全
             return CommonResult.success(true);
         }catch (Exception e) {
@@ -98,4 +106,20 @@ public class StockManageServiceImpl implements StockManageService {
             return CommonResult.failed();
         }
     }
+    @Override
+    @DS("goods")
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void reduceStock(StockChangeEvent stockChangeEvent) {
+        //幂等性校验
+        if(skuStockMapper.isExistTx(stockChangeEvent.getTransactionId())>0){
+            return ;
+        }
+        List<StockChanges> stockChangesList = stockChangeEvent.getStockChangesList();
+        //扣减冻结库存
+        skuStockMapper.updateSkuStock(stockChangesList);
+        //添加事务记录，用于幂等
+        skuStockMapper.addTx(stockChangeEvent.getTransactionId());
+    }
+
+
 }

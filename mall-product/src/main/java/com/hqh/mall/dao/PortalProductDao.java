@@ -4,7 +4,7 @@ package com.hqh.mall.dao;
 import com.hqh.mall.domain.CartProduct;
 import com.hqh.mall.domain.PmsProductParam;
 import com.hqh.mall.domain.PromotionProduct;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

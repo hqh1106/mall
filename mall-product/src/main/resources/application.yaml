@@ -3,9 +3,45 @@ server:
 spring:
   application:
     name: mall-product
+
+  datasource:
+    dynamic:
+      primary: goods
+
+
 mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations:
     - classpath*:com/**/mapper/*.xml
     - classpath:dao/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#seata 配置
+seata:
+  application-id: mall-product
+  # seata 服务分组，要与服务端配置service.vgroup_mapping的后缀对应
+  tx-service-group: mall-order-group
+  registry:
+    # 指定nacos作为注册中心
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: DEFAULT_GROUP
+
+  config:
+    # 指定nacos作为配置中心
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: dev
+      group: DEFAULT_GROUP
+      data-id: seataServer.properties
+
+
+rocketmq:
+  name-server: 192.168.186.128:9876
+  consumer:
+    group: stock_consumer_group
+    topic: reduce-stock

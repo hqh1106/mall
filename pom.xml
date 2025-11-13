@@ -27,10 +27,10 @@
         <dynamic-datasource.version>3.3.2</dynamic-datasource.version>
         <mysql-connector.version>8.0.15</mysql-connector.version>
         <commons-pool2.version>2.4.3</commons-pool2.version>
-        <dynamic-datasource.version>3.3.2</dynamic-datasource.version>
         <mall-common.version>${project.version}</mall-common.version>
         <mall-redis-common.version>${project.version}</mall-redis-common.version>
         <mall-core.version>${project.version}</mall-core.version>
+        <rocketmq-spring-boot-starter.version>2.2.1</rocketmq-spring-boot-starter.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.6.RELEASE</spring-cloud-alibaba.version>
     </properties>
@@ -43,6 +43,11 @@
         <module>mall-redis-common</module>
         <module>mall-core</module>
         <module>mall-member</module>
+        <module>mall-cart</module>
+        <module>mall-order</module>
+        <module>mall-order/mall-order-curr</module>
+        <module>mall-promotion</module>
+        <module>mall-canal</module>
     </modules>
     <dependencyManagement>
         <dependencies>
@@ -144,6 +149,11 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring-boot-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

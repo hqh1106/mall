@@ -1,0 +1,8 @@
+package com.hqh.mall.component.rocketmq;
+
+import org.apache.rocketmq.spring.annotation.ExtRocketMQTemplateConfiguration;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
+
+@ExtRocketMQTemplateConfiguration
+public class ExtRocketMQTemplate extends RocketMQTemplate {
+}

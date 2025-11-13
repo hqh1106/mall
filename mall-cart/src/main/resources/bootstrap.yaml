@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: mall-cart
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 #配置中心的地址
+        file-extension: yaml #配置文件结尾的配置
+        shared-configs[0]:
+          data-id: mall-nacos.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+        shared-configs[1]:
+          data-id: mall-db-common.yaml
+          group: DEFAULT_GROUP
+          refresh: true
+        namespace: dev
+  profiles:
+    active: dev
+
+
+logging:
+  level:
+    com:
+      hqh:
+        mall:
+          dao: debug

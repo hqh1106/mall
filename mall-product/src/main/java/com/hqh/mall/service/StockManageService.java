@@ -1,6 +1,7 @@
 package com.hqh.mall.service;
 
 import com.hqh.mall.common.api.CommonResult;
+import com.hqh.mall.component.rocketmq.StockChangeEvent;
 import com.hqh.mall.domain.CartPromotionItem;
 import com.hqh.mall.domain.StockChanges;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,4 +50,5 @@ public interface StockManageService {
     CommonResult reduceStock(List<StockChanges> stockChangesList);
 
     CommonResult recoverStock(List<StockChanges> stockChangesList);
+    void reduceStock(StockChangeEvent stockChangeEvent);
 }

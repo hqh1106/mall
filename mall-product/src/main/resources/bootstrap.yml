@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: optional:nacos:mall-nacos.yaml,optional:nacos:mall-db-common.yaml
   redis:
     host: 192.168.186.128  # Redis服务器IP
     port: 6379

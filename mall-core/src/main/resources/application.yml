@@ -1,7 +1,7 @@
 spring:
   datasource:
     dynamic:
-      primary: user
+#      primary: user
       # 未匹配到数据源时，true抛异常，false使用默认数据源
       strict: true
       datasource:

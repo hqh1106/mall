@@ -1,0 +1,39 @@
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        requestInterceptors:
+          - com.hqh.mall.feignapi.interceptor.HeaderInterceptor
+        readTimeout: 3000
+        connectTimeout: 3000
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  datasource:
+    dynamic:
+      primary: order
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: mall-order-group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1
+      group: DEFAULT_GROUP
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1
+      namespace: dev
+      group: DEFAULT_GROUP
+      data-id: seataServer.properties
+  enable-auto-data-source-proxy: false
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: mall-product,mall-member,mall-cart
